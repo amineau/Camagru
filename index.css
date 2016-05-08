@@ -1,0 +1,22 @@
+
+/*body{*/
+/*    background-color: #4EC094;*/
+/*    font-size: 12px;*/
+/*}*/
+
+/*input[type="password"], input[type="text"], input[type="mail"]{*/
+/*    background-color: #A0C0A0;*/
+/*    color: black;*/
+/*    border: 1px solid black;*/
+/*    border-radius: 2px;*/
+/*    padding: 5px 5px;*/
+/*    width: 300px;*/
+/*    height: 25px;*/
+/*    font-style: italic;*/
+/*    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),*/
+/*                -1px 2px 20px rgba(255, 255, 255, 0.6) inset;*/
+/*}*/
+
+.mesbox{
+    margin: 10px 0;
+}
