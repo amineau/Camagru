@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-<html>
 
-	<?php include ('head.php'); ?>
-	
-	<body>
-		
-		<?php //include ('header.php'); ?>
+		<?php include ('includes/header.php'); 
+			if ($_SESSION)
+			{
+				require_once('redir.php');
+				header("Location: ".adresse('index.php'));
+				exit;
+			}
+		?>
 		
 		<section class="create-container">
-			<form id="createAccount" class="wind create" method="post">
+			<form id="createAccount" class="wind create" method="post" action="validate_account.php">
 	
 					<h2>Création de compte</h2>
 	
-					<div class="mesbox"><label for="login">Pseudo : </label><br /><input type="text" id="createLogin" /></div>
+					<div><?php echo $doublon; ?></div>
+					<div><label for="login">Login : </label><br /><input name="login" class="box" type="text" id="createLogin" /></div>
 					
-					<div class="mesbox"><label for="mail">Adresse email : </label><br /><input type="mail" id="createMail" /></div>
-					
-					<div class="mesbox"><label for="mail">Confirmation adresse email : </label><br /><input type="mail" id="createConfMail" /></div>
+					<div><label for="email">Adresse email : </label><br /><input name="email" class="box" type="mail" id="createMail" /></div>
 	
-					<div class="mesbox"><label for="passwd">Mot de passe : </label><br /><input type="password" id="createPasswd" />
-					<img name="helpIco" src="img/oxy.ico" height=20 width=20 title="Votre mot de passe doit comporter au minimum 8 caractères avec au moins un chiffre et une lettre."/></br></div>
+					<div><label for="passwd">Mot de passe : </label><br /><input name="passwd" class="box" type="password" id="createPasswd" />
+					<img name="helpIco" src="img/oxy.ico" height=20 width=20 title="Votre mot de passe doit comporter au minimum 6 caractères avec au moins un chiffre et une lettre."/></br></div>
 		
-					<div class="mesbox"><label for="confpasswd">Confirmation mot de passe : </label><br /><input type="password" name="createConfPasswd" /></div>
-	
+					<div><label for="confpasswd">Confirmation mot de passe : </label><br /><input class="box" type="password" id="createConfPasswd" /></div>
+
 					<div><input onclick="checkAccount()" type="button" name="OK" value="OK" />
 				
 			</form>
 		</section>
 		
-		<?php //include ('footer.php'); ?>
-	</body>
-</html>
+		<?php include ('includes/footer.php'); ?>

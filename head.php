@@ -4,3 +4,5 @@
 		<link rel="stylesheet" type="text/css" href="index.css">
 		<script type="text/javascript" src="script.js"></script>
 	</head>
+	
+	<?php $website_name = "Instagru"; ?>
