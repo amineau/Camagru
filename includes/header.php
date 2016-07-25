@@ -1,7 +1,15 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
+<?php
+	session_start();
+	$website_name = "Instagru";
+?>
+
 <html>
-	<?php include ('head.php'); ?>
+	<head>
+		<title><?php echo $website_name; ?></title>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="index.css">
+	</head>
 	<body>
 		<header>
 			<?php 
