@@ -7,8 +7,8 @@
 /************** Connexion bdd ***************/  
     $IP             = getenv('IP');
     $DB_DSN         = "mysql:localhost;host=" . $IP;
-    $DB_USER        = getenv('C9_USER');
-    $DB_PASSWORD    = "";
+    $DB_USER        = "root";
+    $DB_PASSWORD    = "root";
 /********************************************/
 
 

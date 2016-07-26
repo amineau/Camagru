@@ -6,7 +6,7 @@
 		canvas  = document.querySelector('#canvas'),
 		photo   = document.querySelector('#photo'),
 		button  = document.querySelector('#button'),
-		// save    = document.querySelector('#save'),
+		save    = document.querySelector('#save'),
 		width   = 320,
 		height  = 0;
 
@@ -51,14 +51,16 @@
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL('image/png');
 		photo.setAttribute('src', data);
+		save.setAttribute('value', data.slice(22));
+
+
 		// photo.setAttribute('alt', 'photo');
 		// var pal = document.querySelector('#palmier');
 		// var sab = document.querySelector('#sabre');
 		// var nez = document.querySelector('#nez');
 		// if (pal.checked || sab.checked || nez.checked) {
-		// 	save.removeAttribute('hidden');
-		// 	save.setAttribute('value', data);
-		// }
+			// save.removeAttribute('hidden');
+		 		// }
 	}
 
 	button.addEventListener('click', function(ev){

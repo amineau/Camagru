@@ -7,6 +7,7 @@
 				<button id="button">Souriez</button>
 				<canvas id="canvas"></canvas>
 				<img src="http://placekitten.com/g/200/150" id="photo" alt="photo">
+				<button id="save" name="data" formaction="save_picture.php" formmethod="post">Sauvegarder</button>
 				<script type="text/javascript" src="webcam.js"></script>
 			</form>
 		</section>
