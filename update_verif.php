@@ -1,6 +1,6 @@
 <?php 
 	
-	require_once('redir.php');
+	require_once('function.php');
 	if (!$_POST) {
 		header("Location: ".adresse('index.php'));
 		exit;

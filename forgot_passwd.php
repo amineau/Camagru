@@ -2,7 +2,7 @@
         include ('includes/header.php'); 
     	if ($_SESSION)
 		{
-			require_once('redir.php');
+			require_once('function.php');
 			header("Location: ".adresse('index.php'));
 			exit;
 		}

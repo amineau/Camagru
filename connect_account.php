@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('redir.php');
+    require_once('function.php');
     
     if (!$_POST) {
 		
@@ -25,7 +25,7 @@
     else {
         $ret_connect = "login ou mot de passe incorect";
     }
-    require('index.php');
+    header("Location: ".adresse('index.php?ret_connect='.$ret_connect));
     exit;
     
 ?>

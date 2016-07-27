@@ -1,5 +1,5 @@
 .box {
-    border: 1px solid #C1C1C1;
+    border: 1px #C1C1C1;
     border-radius: 2px;
 }
 
@@ -7,6 +7,15 @@
     margin: 10px 0;
 }
 
+body {
+	background-color: #C1C1C1;
+}
+
 canvas {
     display: none;
+}
+
+.calque img{
+	max-height: 100px;
+	width: auto;
 }

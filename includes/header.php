@@ -14,8 +14,10 @@
 		<header>
 			<?php 
 			echo '<div><a href="index.php"><img src="img/instagru.gif" alt="logo instagru"/></a></div>';
-			echo '<div>'.$ret_connect.'</div>';
-			if (!$_SESSION['login']){
+			if (isset($_GET['ret_connect'])) {
+				echo '<div>'.$_GET['ret_connect'].'</div>';
+			}
+			if (!isset($_SESSION['login'])){
 				echo '<form method="post" action="connect_account.php">';
 				echo '<a href="create_account.php">Création de compte</a>';
 				echo '<div><label for="login">Login : </label><input name="login" type="text" id="connectLogin" />';
@@ -26,6 +28,7 @@
 			} else { 
 				echo '<div>Bonjour '.$_SESSION['login'].'</div>';
 				echo '<div><a href="update_passwd.php">Changer de mot de passe</a></div>';
+				// echo '<div><a href="remove_account.php">Supprimer le compte</a></div>';
 				echo '<div><a href="disconnect.php">Deconnexion</a></div>';
 			}
 			

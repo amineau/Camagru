@@ -2,7 +2,7 @@
 		<?php include ('includes/header.php'); 
 			if ($_SESSION)
 			{
-				require_once('redir.php');
+				require_once('function.php');
 				header("Location: ".adresse('index.php'));
 				exit;
 			}
@@ -12,8 +12,12 @@
 			<form id="createAccount" class="wind create" method="post" action="validate_account.php">
 	
 					<h2>Création de compte</h2>
-	
-					<div><?php echo $doublon; ?></div>
+					
+					<?php 
+						if (isset($_GET['doublon'])) {
+							echo "<div>".$_GET['doublon']."</div>";
+						}
+					?>
 					<div><label for="login">Login : </label><br /><input name="login" class="box" type="text" id="createLogin" /></div>
 					
 					<div><label for="email">Adresse email : </label><br /><input name="email" class="box" type="mail" id="createMail" /></div>

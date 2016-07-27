@@ -1,6 +1,6 @@
 <?php
 	
-	require_once('redir.php');
+	require_once('function.php');
 	if (!$_POST) {
 		header("Location: ".adresse('index.php'));
 		exit;
@@ -23,7 +23,7 @@
 		 		}
 		 		$doublon .= $value;
 		 		$doublon .= " est déjà utilisé.";
-		 		require('create_account.php');
+		 		header("Location: ".adresse('create_account.php?doublon='.$doublon));
 		 		exit;
 		 	}
 		}
@@ -43,20 +43,20 @@
  			$code));
  	    
  	    /******** Envoi du mail ********/
- 	    $to = $_POST['email'];
- 	    
- 	    $subject = "Validation de compte sur " . $website_name;
- 	    
- 	    $message = "Bonjour ";
- 	    $message .= $_POST['login'].",\r\n\r\n";
- 	    $message .= "Veuillez cliquer sur le lien suivant pour confirmer la création de votre compte :\r\n";
- 	    $message .= adresse("validation.php?code=".$code);
- 	    $message = wordwrap($message, 70, "\r\n");
- 	    
- 	    mail($to, $subject, $nessage);
+
+ 	    $subject = $website_name." : Veuillez confirmer votre adresse électronique";
+
+ 	    $message = "<html><body><p><strong>Vous y êtes presque</strong></p>";
+ 	    $message .= "<p>Bienvenue dans ".$website_name.", ".$_POST['login'];
+ 	    $message .= ".<br />Cliquez sur le lien ci-dessous puis connectez vous avec votre login : ";
+ 	    $message .= $_POST['login'].".<br />";
+ 	    $message .= "<a href=\"".adresse("validation.php?code=".$code)."\" style=\"font-style: bold; text-decoration: none\">Confirmez votre adresse électronique</a></p>";
+ 	    $message .= "<p>Nous sommes heureux de vous compter parmis nous,<br />L'équipe ".$website_name;
+ 	    $message .= "</p></body></html>";
+
+    	send_mail($_POST['email'], $subject, $message, $website_name);
  	    /******************************/
  	    
- 	    echo $message."\n";
- 	    echo "<p>Un email de confirmation vient de vous être envoyé sur votre boite mail " .$to. ".</br>Veuillez cliquer sur le lien de confirmation présent dans le mail pour valider votre inscription.</p>";
+ 	    echo "<p>Un email de confirmation vient de vous être envoyé sur votre boite mail " .$_POST['email']. ".</br>Veuillez cliquer sur le lien de confirmation présent dans le mail pour valider votre inscription.</p>";
 		
 		include ('includes/footer.php'); ?>

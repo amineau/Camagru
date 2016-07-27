@@ -1,7 +1,12 @@
+<html>
+    <head>
+        <title>Configuration bdd</title>
+        <meta charset="utf-8" />
+    </head>
+</html>
 <?php
 
     require('database.php');
-    include('../head.php');
     
 
     try {
@@ -10,7 +15,7 @@
         $db->exec("DROP DATABASE IF EXISTS camagru;
                     CREATE DATABASE camagru;
                     USE camagru;
-                    CREATE TABLE IF NOT EXISTS user 
+                    CREATE TABLE user 
                         (id INT PRIMARY KEY AUTO_INCREMENT,
                         login VARCHAR(50) NOT NULL,
                         date_de_creation DATETIME NOT NULL,
@@ -18,7 +23,13 @@
                         password VARCHAR(255) NOT NULL,
                         code VARCHAR(32),
                         valid TINYINT(1) DEFAULT 0 NOT NULL,
-                        admin TINYINT(1) DEFAULT 0 NOT NULL);"
+                        admin TINYINT(1) DEFAULT 0 NOT NULL);
+                    CREATE TABLE picture
+                        (id INT PRIMARY KEY AUTO_INCREMENT,
+                        image BLOB NOT NULL,
+                        id_user INT(11) UNSIGNED NOT NULL,
+                        date_de_creation DATETIME NOT NULL,
+                        );"
                     );
         $req = $db->prepare("INSERT INTO user(login, date_de_creation, email, password, valid, admin)
  	    							VALUE(?, ?, ?, ?, 1, 1)");

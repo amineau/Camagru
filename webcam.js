@@ -7,7 +7,7 @@
 		photo   = document.querySelector('#photo'),
 		button  = document.querySelector('#button'),
 		save    = document.querySelector('#save'),
-		width   = 320,
+		width   = 500,
 		height  = 0;
 
 	navigator.getMedia = ( navigator.getUserMedia ||
@@ -50,21 +50,18 @@
 		canvas.height = height;
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL('image/png');
-		photo.setAttribute('src', data);
-		save.setAttribute('value', data.slice(22));
-
-
-		// photo.setAttribute('alt', 'photo');
-		// var pal = document.querySelector('#palmier');
-		// var sab = document.querySelector('#sabre');
-		// var nez = document.querySelector('#nez');
-		// if (pal.checked || sab.checked || nez.checked) {
-			// save.removeAttribute('hidden');
-		 		// }
+		button.setAttribute('value', data.slice(22));
 	}
 
 	button.addEventListener('click', function(ev){
 			takepicture();
+			submit();
+			ev.preventDefault();
+		}, false);
+
+	save.addEventListener('click', function(ev){
+			save.setAttribute('value', photo.getAttribute('src').slice(22));
+			submit();	
 			ev.preventDefault();
 		}, false);
 
