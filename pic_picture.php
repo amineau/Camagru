@@ -7,7 +7,7 @@
 				exit;
 			}
 	$cam	= base64_decode($_POST['data']);
-	$cho	= $_POST['calque'];
+	$cho	= $_POST['calque'].".png";
 	$dest	= imagecreatefromstring($cam);
 	$src	= imagecreatefrompng('img/calque/'.$cho);
 

@@ -15,7 +15,13 @@ canvas {
     display: none;
 }
 
-.calque img{
+.calque img {
 	max-height: 100px;
 	width: auto;
+}
+
+#superpos {
+	position: relative;
+	overflow: hidden;
+
 }

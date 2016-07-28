@@ -10,12 +10,13 @@
 	
 	require('connec_db.php');
     
-    $rep = $db->prepare('SELECT login, password, valid FROM user WHERE login = ? AND password = ?;');
+    $rep = $db->prepare('SELECT id, login, password, valid FROM user WHERE login = ? AND password = ?;');
     $rep->execute(array($_POST['login'], hash("whirlpool", $_POST['passwd'])));
     $donnee = $rep->fetch();
     if ($donnee['login']) {
         if ($donnee['valid']) {
             $_SESSION['login'] = $donnee['login'];
+            $_SESSION['id_user'] = $donnee['id'];
             $ret_connect = "Connexion réussi";
         }
         else {

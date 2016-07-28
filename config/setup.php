@@ -26,13 +26,29 @@
                         admin TINYINT(1) DEFAULT 0 NOT NULL);
                     CREATE TABLE picture
                         (id INT PRIMARY KEY AUTO_INCREMENT,
-                        image BLOB NOT NULL,
+                        image MEDIUMBLOB NOT NULL,
                         id_user INT(11) UNSIGNED NOT NULL,
-                        date_de_creation DATETIME NOT NULL,
-                        );"
+                        date_de_creation DATETIME NOT NULL);
+                    CREATE TABLE like
+                        (id INT PRIMARY KEY AUTO_INCREMENT,
+                        id_user INT(11) UNSIGNED NOT NULL,
+                        id_pic INT(11) UNSIGNED NOT NULL);
+                    CREATE TABLE comment
+                        (id INT PRIMARY KEY AUTO_INCREMENT,
+                        id_user INT(11) UNSIGNED NOT NULL,
+                        id_pic INT(11) UNSIGNED NOT NULL,
+                        comment TEXT,
+                        date_comment DATETIME NOT NULL);
+                        "
                     );
-        $req = $db->prepare("INSERT INTO user(login, date_de_creation, email, password, valid, admin)
- 	    							VALUE(?, ?, ?, ?, 1, 1)");
+        $req = $db->prepare("INSERT INTO user
+                    (login,
+                    date_de_creation,
+                    email,
+                    password,
+                    valid,
+                    admin)
+ 	    			VALUE(?, ?, ?, ?, 1, 1)");
  	    $req->execute(array(
  	    		$login,
  	    		date("Y-m-d H:i:s", time()),

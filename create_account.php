@@ -1,6 +1,6 @@
 
 		<?php include ('includes/header.php'); 
-			if ($_SESSION)
+			if (isset($_SESSION['login']))
 			{
 				require_once('function.php');
 				header("Location: ".adresse('index.php'));

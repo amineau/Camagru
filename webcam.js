@@ -7,6 +7,7 @@
 		photo   = document.querySelector('#photo'),
 		button  = document.querySelector('#button'),
 		save    = document.querySelector('#save'),
+		superpo = document.querySelector('#superpos'),
 		width   = 500,
 		height  = 0;
 
@@ -41,6 +42,8 @@
 				video.setAttribute('height', height);
 				canvas.setAttribute('width', width);
 				canvas.setAttribute('height', height);
+				superpo.style.width = width;
+				superpo.style.height = height;
 				streaming = true;
 			}
 		}, false);
