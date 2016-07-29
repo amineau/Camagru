@@ -19,41 +19,36 @@
 
 			<?php	} else {	?>
 			<article>
-				<form>
+				<form id="montage" action="save_picture.php" method="post">
 					<div id="calque">
 						<?php
 							$liste_img = array_splice(scandir('img/calque'), 2);
 							foreach ($liste_img as $file) {
 								$name = strstr($file, '.', true);
-								echo "<img src='img/calque/".$file."' id='".$name."' name='calque_png' alt='".$name."' width='100'>";
+								echo "<img src='img/calque/".$file."' id='".$name."' name='calque_png' class='ajout' alt='".$name."'>";
 							}
 						?>	
 					</div>
 					<input type="hidden" id="hid_calque" name="calque">
+					<input type="hidden" id="hid_data" name="data">
 					<div id="superpos"><video id="video"></video></div>
 					<script type="text/javascript" src="montage.js"></script>
-					<button id="button" name="data" formaction="pic_picture.php" formmethod="post">Souriez</button>
+					<button id="button">Prendre une photo</button>
 					
 					<canvas id="canvas"></canvas>
-					<?php
-						if (isset($previsual)) {
-							echo "<img src='data:image/png;base64,".base64_encode($previsual)."' id='photo' alt='photo'>";
-						}
-					?>
-					<button id="save" name="data" formaction="save_picture.php" formmethod="post">Sauvegarder</button>
 					<script type="text/javascript" src="webcam.js"></script>
 				</form>
 			</article>
-			<aside>
+			<aside class="nav">
 				<h2>Mes photos</h2>
 				<?php
 					require('connec_db.php');
     
 				    try {
-					    $rep = $db->prepare('SELECT id, image FROM picture WHERE id_user = ? ORDER BY date_de_creation DESC LIMIT 8;');
+					    $rep = $db->prepare('SELECT id, image FROM picture WHERE id_user = ? ORDER BY date_de_creation DESC;');
 					    $rep->execute(array($_SESSION['id_user']));
 					    while ($donnees = $rep->fetch()) {
-					    	echo "<img src='data:image/png;base64,".$donnees['image']."' width='200' id='new_pic' alt='".$donnees['id']."'>";
+					    	echo "<a href='image.php?id_pic=".$donnees['id']."'><img src='data:image/png;base64,".$donnees['image']."' class='pic_galerie' alt='".$donnees['id']."'></a>";
 					    }
 					}
 					catch(PDOException $e) {

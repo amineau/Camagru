@@ -12,19 +12,23 @@
 		$doublon = "";
 		$en_tete = array ('email', 'login');
 		foreach ($en_tete as $value) {
-			$req = $db->prepare("SELECT * FROM user WHERE ".$value." = ?;");
-		 	$req->execute(array($_POST[$value]));
-		 	if ($req->fetch()){
-		 		if ($value == 'email') {
-		 			$doublon = 'L\'';
-		 		}
-		 		else {
-		 			$doublon = 'Le ';
-		 		}
-		 		$doublon .= $value;
-		 		$doublon .= " est déjà utilisé.";
-		 		header("Location: ".adresse('create_account.php?doublon='.$doublon));
-		 		exit;
+			try {
+				$req = $db->prepare("SELECT * FROM user WHERE ".$value." = ?;");
+			 	$req->execute(array($_POST[$value]));
+			 	if ($req->fetch()){
+			 		if ($value == 'email') {
+			 			$doublon = 'L\'';
+			 		}
+			 		else {
+			 			$doublon = 'Le ';
+			 		}
+			 		$doublon .= $value;
+			 		$doublon .= " est déjà utilisé.";
+			 		header("Location: ".adresse('create_account.php?doublon='.$doublon));
+			 		exit;
+			 	}
+		 	} catch(PDOException $e) {;
+				echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
 		 	}
 		}
 	/*********************************************/
@@ -32,15 +36,21 @@
 	include ('includes/header.php');
 	
 	$code = md5(rand().'login');
-		
-	$req = $db->prepare("INSERT INTO user(login, date_de_creation, email, password, code)
- 	    							VALUE(?, ?, ?, ?, ?);");
- 	$req->execute(array(
-			$_POST['login'],
- 	 		date("Y-m-d H:i:s", time()),
- 			$_POST['email'],
- 			hash("whirlpool", $_POST['passwd']),
- 			$code));
+	try {	
+		$db->beginTransaction();
+		$req = $db->prepare("INSERT INTO user(login, date_de_creation, email, password, code)
+	 	    							VALUE(?, ?, ?, ?, ?);");
+	 	$req->execute(array(
+				$_POST['login'],
+	 	 		date("Y-m-d H:i:s", time()),
+	 			$_POST['email'],
+	 			hash("whirlpool", $_POST['passwd']),
+	 			$code));
+	 	$db->commit();
+ 	} catch(PDOException $e) {
+		$db->rollBack();
+		echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
+	}
  	    
  	    /******** Envoi du mail ********/
 

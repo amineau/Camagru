@@ -3,11 +3,12 @@
 	$website_name = "Instagru";
 ?>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title><?php echo $website_name; ?></title>
 		<meta charset="utf-8" />
-		<script type="text/javascript" src="account.js"></script>
+		<script type="text/javascript" src="functions.js"></script>
 		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 	<body>

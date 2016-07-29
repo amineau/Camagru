@@ -29,15 +29,15 @@
                         image MEDIUMBLOB NOT NULL,
                         id_user INT(11) UNSIGNED NOT NULL,
                         date_de_creation DATETIME NOT NULL);
-                    CREATE TABLE like
+                    CREATE TABLE likes
                         (id INT PRIMARY KEY AUTO_INCREMENT,
                         id_user INT(11) UNSIGNED NOT NULL,
                         id_pic INT(11) UNSIGNED NOT NULL);
-                    CREATE TABLE comment
+                    CREATE TABLE comments
                         (id INT PRIMARY KEY AUTO_INCREMENT,
                         id_user INT(11) UNSIGNED NOT NULL,
                         id_pic INT(11) UNSIGNED NOT NULL,
-                        comment TEXT,
+                        commentaire TEXT,
                         date_comment DATETIME NOT NULL);
                         "
                     );

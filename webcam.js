@@ -6,9 +6,8 @@
 		canvas  = document.querySelector('#canvas'),
 		photo   = document.querySelector('#photo'),
 		button  = document.querySelector('#button'),
-		save    = document.querySelector('#save'),
 		superpo = document.querySelector('#superpos'),
-		width   = 500,
+		width   = 480,
 		height  = 0;
 
 	navigator.getMedia = ( navigator.getUserMedia ||
@@ -53,18 +52,12 @@
 		canvas.height = height;
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL('image/png');
-		button.setAttribute('value', data.slice(22));
+		document.getElementById('hid_data').setAttribute('value', data.slice(22));
 	}
 
 	button.addEventListener('click', function(ev){
 			takepicture();
-			submit();
-			ev.preventDefault();
-		}, false);
-
-	save.addEventListener('click', function(ev){
-			save.setAttribute('value', photo.getAttribute('src').slice(22));
-			submit();	
+			document.forms['montage'].submit();
 			ev.preventDefault();
 		}, false);
 

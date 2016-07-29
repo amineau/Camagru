@@ -2,7 +2,7 @@
 
 	include ('includes/header.php'); 			
 		
-	if (!isset($_POST['delete']) || !isset($_POST['id_pic'])) {
+	if (!isset($_POST['delete'], $_POST['id_pic'])) {
 		require_once('function.php');
 		header("Location: ".adresse('index.php'));
 		exit;
@@ -20,11 +20,14 @@
 
 				    if ($donnees['id_user'] == $_SESSION['id_user']) {
 						try {
+							$db->beginTransaction();
 						    $rep = $db->prepare('DELETE FROM picture WHERE id = ?;');
 						    $rep->execute(array($_POST['id_pic']));
+						    $db->commit();
 						    $aff = "L'image a bien été supprimée.";
 						}
 						catch(PDOException $e) {
+							$db->rollBack();
 							$aff = 'Connexion échouée : ' . $e->getMessage();
 						}
 					} else {

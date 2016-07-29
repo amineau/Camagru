@@ -20,6 +20,8 @@
 			return (superpos.offsetWidth - cover.offsetWidth) + 30;
 		} else if (name == "serpent") {
 			return 0;
+		} else {
+			return (superpos.offsetWidth - cover.offsetWidth) / 2;
 		}
 	}
 	function pos_y(name) {
@@ -33,6 +35,8 @@
 			return (superpos.offsetHeight - cover.offsetHeight) / 2;
 		} else if (name == "serpent") {
 			return superpos.offsetHeight - cover.offsetHeight;
+		} else {
+			return (superpos.offsetHeight - cover.offsetHeight) / 2;
 		}
 	}
 
@@ -48,8 +52,8 @@
 				this.style.opacity = "1";
 				hidde.setAttribute('value', this.id);
 				cover.setAttribute('src', this.getAttribute('src'));
-				cover.style.left = pos_x(this.id);
-				cover.style.top = pos_y(this.id);
+				cover.style.left = pos_x(this.id) + "px";
+				cover.style.top = pos_y(this.id) + "px";
 
 			} else {
 				hidde.removeAttribute('value');
