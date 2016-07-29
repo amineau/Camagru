@@ -32,13 +32,12 @@
 					<input type="hidden" id="hid_calque" name="calque">
 					<input type="hidden" id="hid_data" name="data">
 					<div id="superpos"><video id="video"></video></div>
+					<button id="button" style="display: none;">Prendre une photo</button>	
 					<script type="text/javascript" src="montage.js"></script>
-					<button id="button">Prendre une photo</button>
-					
 					<canvas id="canvas"></canvas>
-					<script type="text/javascript" src="webcam.js"></script>
 				</form>
 			</article>
+			<script type="text/javascript" src="webcam.js"></script>
 			<aside class="nav">
 				<h2>Mes photos</h2>
 				<?php
@@ -56,6 +55,7 @@
 					}
 				?>	
 			</aside>
+
 			
 			<?php 	}	?>
 

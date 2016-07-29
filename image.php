@@ -9,35 +9,7 @@
 	}
 ?>
 
-<script type="text/javascript">
-
-	function ft_like(oARef) {
-		var xhr 	= getXMLHttpRequest();
-		var liOrDis	= oARef.id;
-		var idPic	= document.getElementById('picture').alt;
-
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				readData(xhr.responseText);
-			}
-		};
-		if (liOrDis == 'like') {
-			document.getElementById('dislike').style.visibility = "visible";
-		} else {
-			oARef.style.visibility = "hidden";
-		}
-		xhr.open("POST", "like.php", true);
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhr.send("action="+liOrDis+"&id_pic="+idPic);
-	}
-
-	function readData(sData) {
-		var ret = sData;
-		console.log(ret);
-	}
-
-</script>
-
+<script type="text/javascript" src="image.js"></script>
 		<section>
 			<article>
 
@@ -62,21 +34,49 @@
 
 
 						    if (isset($donnees['image'])) {
-						    	echo '<img src="data:image/png;base64,'.$donnees['image'].'" id="picture" alt="'.$_GET['id_pic'].'">';
+						    	echo '<img src="data:image/png;base64,'.$donnees['image'].'" id="picture">';
 						    } else {
 								echo "<p>Cette image n'existe pas !</p>";
 							}
 						
 						    echo '<input type="hidden" name="coeur">';
-							echo '<div class="corazon"><a href="#" onclick="ft_like(this)" id="like"><img src="img/coeur-noir.png"></a>';
+							echo '<div class="corazon"><a href="#" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
 							echo '<a href="#" onclick="ft_like(this);" id="dislike" style="visibility: '.$visibility.';" ><img src="img/coeur-rouge.png"></a></div>';
-								
-							if ($donnees['id_user'] == $_SESSION['id_user']) {
-								echo '<form action="remove_pic.php" method="post">';
-								echo '<input type="hidden" name="id_pic" value="'.$_GET['id_pic'].'">';
-								echo '<input type="submit" name="delete" value="Supprimer">';
-								echo '</form>';
+							echo "<div id='comments'>";
+							try {
+								require("connec_db.php");
+								$rep = $db->prepare('SELECT commentaire, id_user, date_comment FROM comments WHERE id_pic = ? ORDER BY date_comment ASC;');
+								$rep->execute(array($_GET['id_pic']));
+								while ($donnees = $rep->fetch()) {
+									try {
+										$rep2 = $db->prepare('SELECT login FROM user WHERE id = ?;');
+										$rep2->execute(array($donnees['id_user']));
+										$recup = $rep2->fetch();
+										$name		= $recup['login'];
+										$date 		= $donnees['date_comment'];
+										$comment 	= $donnees['commentaire'];
+										echo '<script type="text/javascript">createComment("'.$name.'","'.$date.'","'.$comment.'");</script>';
+									} catch(PDOException $e) {
+										echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
+									}
+
+								}
+
+							} catch(PDOException $e) {
+								echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
 							}
+							echo "</div>";
+							?>
+								<input type="text" id="comment">
+								<input type="button" onclick="ft_comment()" id="valider" value="Valider">
+							<?php	
+							
+								echo '<form action="remove_pic.php" method="post">';
+								echo '<input type="hidden" id="id_pic" name="id_pic" value="'.$_GET['id_pic'].'">';
+								if ($donnees['id_user'] == $_SESSION['id_user']) {
+									echo '<input type="submit" name="delete" value="Supprimer">';
+								}
+								echo '</form>';
 
 						} catch(PDOException $e) {;
 						echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';

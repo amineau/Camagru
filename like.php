@@ -2,7 +2,7 @@
 	session_start();
 	header('Content-Type: text/plain');
 
-	if (isset($_POST['action'], $_POST['id_pic'])) {
+	if (isset($_POST['action'], $_POST['id_pic'], $_SESSION['id_user'])) {
 		require('connec_db.php');
 		
 		try {

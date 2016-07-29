@@ -3,6 +3,7 @@
 	var calque	= document.getElementById('calque'),
 		hidde	= document.getElementById('hid_calque'),
 		video	= document.getElementById('video'),
+		button	= document.getElementById('button'),
 		superpos = document.getElementById('superpos'),
 		child	= calque.firstElementChild,
 		cover	= document.createElement("IMG");
@@ -54,12 +55,14 @@
 				cover.setAttribute('src', this.getAttribute('src'));
 				cover.style.left = pos_x(this.id) + "px";
 				cover.style.top = pos_y(this.id) + "px";
+				button.style.display = "block";
 
 			} else {
 				hidde.removeAttribute('value');
 				cover.removeAttribute('src');
 				superpos.removeChild(superpos.lastElementChild);
 				this.style.opacity = "0.5";
+				button.style.display = "none";
 			}
 		};
 		child.onload = function() {
