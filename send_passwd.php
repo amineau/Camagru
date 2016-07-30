@@ -27,19 +27,18 @@
 				$aff = 'Connexion échouée : ' . $e->getMessage() . '<br/>';
 			}
 
-		    /******** Envoi du mail ********/
-	 	    $to = $_POST['email'];
-	 	    
-	 	    $subject = "Nouveau mot de passe " . $website_name;
-	 	    
-	 	    $message = "Bonjour ";
-	 	    $message .= $donnee['login'].",\r\n\r\n";
-	 	    $message .= "Suite à votre demande, un nouveau mot de passe vous a été attribué.\r\n Mot de passe :";
-	 	    $message .= $new_passwd;
-	 	    $message = wordwrap($message, 70, "\r\n");
-	 	    
-	 	    mail($to, $subject, $message);
-	 	    /******************************/
+	 	    /******** Envoi du mail ********/
+	 	    $website = "Instagru";
+	 	    $subject = $website." : Nouveau mot de passe";
+
+	 	    $message = "<html><body><p><strong>Bonjour ".$donnee['login'].",</strong></p>";
+	 	    $message .= "<p>Suite à votre demande, un nouveau mot de passe vous a été attribué.<br />";
+	 	    $message .= "Nouveau mot de passe : ".$new_passwd."</p>";
+	 	    $message .= "<p>Nous sommes heureux de vous compter parmis nous,<br />L'équipe ".$website;
+	 	    $message .= "</p></body></html>";
+
+	    	send_mail($_POST['email'], $subject, $message, $website);
+ 	    	/******************************/
 	 	    
 		}
 	} catch(PDOException $e) {

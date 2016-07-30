@@ -19,7 +19,7 @@
 						try {
 						    $rep = $db->prepare('SELECT image, id_user FROM picture WHERE id = ?;');
 						    $rep->execute(array($_GET['id_pic']));
-							$donnees = $rep->fetch();
+							$donnees_pic = $rep->fetch();
 						    
 
 						    $rep2 = $db->prepare('SELECT COUNT(*) FROM likes WHERE id_user = ? AND id_pic = ?;');
@@ -33,15 +33,22 @@
 
 
 
-						    if (isset($donnees['image'])) {
-						    	echo '<img src="data:image/png;base64,'.$donnees['image'].'" id="picture">';
+						    if (isset($donnees_pic['image'])) {
+						    	echo '<img src="data:image/png;base64,'.$donnees_pic['image'].'" id="picture">';
 						    } else {
 								echo "<p>Cette image n'existe pas !</p>";
+								exit;
 							}
 						
 						    echo '<input type="hidden" name="coeur">';
-							echo '<div class="corazon"><a href="#" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
-							echo '<a href="#" onclick="ft_like(this);" id="dislike" style="visibility: '.$visibility.';" ><img src="img/coeur-rouge.png"></a></div>';
+							echo '<div class="corazon"><a href="javascript:void(0)" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
+							echo '<a href="javascript:void(0)" onclick="ft_like(this);" id="dislike" style="visibility: '.$visibility.';" ><img src="img/coeur-rouge.png"></a></div>';
+							echo '<form action="remove_pic.php" method="post">';
+							echo '<input type="hidden" id="id_pic" name="id_pic" value="'.$_GET['id_pic'].'">';
+							if ($donnees_pic['id_user'] == $_SESSION['id_user']) {
+								echo '<input type="submit" name="delete" value="Supprimer">';
+							}
+							echo '</form>';
 							echo "<div id='comments'>";
 							try {
 								require("connec_db.php");
@@ -70,13 +77,7 @@
 								<input type="text" id="comment">
 								<input type="button" onclick="ft_comment()" id="valider" value="Valider">
 							<?php	
-							
-								echo '<form action="remove_pic.php" method="post">';
-								echo '<input type="hidden" id="id_pic" name="id_pic" value="'.$_GET['id_pic'].'">';
-								if ($donnees['id_user'] == $_SESSION['id_user']) {
-									echo '<input type="submit" name="delete" value="Supprimer">';
-								}
-								echo '</form>';
+								
 
 						} catch(PDOException $e) {;
 						echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';

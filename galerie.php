@@ -20,7 +20,7 @@
 						    $rep = $db->prepare('SELECT id, image FROM picture ORDER BY date_de_creation DESC;');
 						    $rep->execute();
 						    while ($donnees = $rep->fetch()) {
-						    	echo "<a href='image.php?id_pic=".$donnees['id']."'><img src='data:image/png;base64,".$donnees['image']."' class='pic_galerie' alt='Photo de galerie' style='display: none;'></a>";
+						    	echo "<div class='pic_nav'><a href='image.php?id_pic=".$donnees['id']."'><img src='data:image/png;base64,".$donnees['image']."' class='pic_galerie' alt='Photo de galerie' style='display: none;'></a></div>";
 						    }
 						}
 						catch(PDOException $e) {

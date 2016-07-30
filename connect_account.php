@@ -2,17 +2,21 @@
     session_start();
     require_once('function.php');
     
-    if (!isset($_POST['login'], $_POST['passwd'])) {
-		
+    $login  = $_POST['login'];
+    $passwd = $_POST['passwd'];
+
+    if (!isset($login, $passwd)) {	
 			header("Location: ".adresse('index.php'));
 			exit;
 	}
-	
+	print_r($_POST);
+    echo "<br />".$login."<br />";
 	require('connec_db.php');
     try {
         $rep = $db->prepare('SELECT id, login, password, valid FROM user WHERE login = ? AND password = ?;');
-        $rep->execute(array($_POST['login'], hash("whirlpool", $_POST['passwd'])));
+        $rep->execute(array($login, hash("whirlpool", $passwd)));
         $donnee = $rep->fetch();
+        print_r($donnee);
         if ($donnee['login']) {
             if ($donnee['valid']) {
                 $_SESSION['login'] = $donnee['login'];
@@ -22,8 +26,7 @@
             else {
                 $ret_connect = "Vous n'avez pas validé votre compte";
             }
-        }
-        else {
+        } else {
             $ret_connect = "login ou mot de passe incorect";
         }
     } catch(PDOException $e) {

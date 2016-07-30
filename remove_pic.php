@@ -23,6 +23,10 @@
 							$db->beginTransaction();
 						    $rep = $db->prepare('DELETE FROM picture WHERE id = ?;');
 						    $rep->execute(array($_POST['id_pic']));
+						    $rep = $db->prepare('DELETE FROM likes WHERE id_pic = ?;');
+						    $rep->execute(array($_POST['id_pic']));
+						    $rep = $db->prepare('DELETE FROM comments WHERE id_pic = ?;');
+						    $rep->execute(array($_POST['id_pic']));
 						    $db->commit();
 						    $aff = "L'image a bien été supprimée.";
 						}

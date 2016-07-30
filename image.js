@@ -16,9 +16,10 @@
 
 
 	function ft_comment(){
+		var comment	= encodeURIComponent(document.getElementById('comment').value);
+		if (comment == ""){return;}
 		var xhr 	= getXMLHttpRequest();
 		var idPic	= document.getElementById('id_pic').value;
-		var comment	= encodeURIComponent(document.getElementById('comment').value);
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
@@ -32,14 +33,25 @@
 	}
 
 	function readData(sData) {
-		var listCom	= document.getElementById('comments');
+		var listCom	= document.getElementById('comments'),
 			comment	= sData.getElementsByTagName("comment")[0].textContent,
 			name	= sData.getElementsByTagName("name")[0].textContent,
-			date	= sData.getElementsByTagName("date")[0].textContent,
+			date	= sData.getElementsByTagName("date")[0].textContent;
+			idPic	= sData.getElementsByTagName("id")[0].textContent;
+			xhr 	= getXMLHttpRequest();
+		createComment(name, date, comment);
 			
-			createComment(name, date, comment);
-			
-			document.getElementById('comment').value = "";
+		document.getElementById('comment').value = "";
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+				returnMail(xhr.responseText);
+			}
+		};
+
+		xhr.open("POST", "comment_send_mail.php", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send("text="+comment+"&name="+name+"&date="+date+"&id_pic="+idPic);
 	}
 
 	function createComment(name, date, comment) {

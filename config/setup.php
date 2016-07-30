@@ -50,10 +50,10 @@
                     admin)
  	    			VALUE(?, ?, ?, ?, 1, 1)");
  	    $req->execute(array(
- 	    		$login,
+ 	    		$super_login,
  	    		date("Y-m-d H:i:s", time()),
- 	    		$mail,
- 	    		$password));
+ 	    		$super_mail,
+ 	    		$super_password));
  	    echo 'La base de données a bien été réinitialisée';
     }
     catch(PDOException $e) {

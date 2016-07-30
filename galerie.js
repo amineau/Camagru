@@ -55,8 +55,8 @@ function resize() {
 		nb_page		= Math.ceil(nb_img / (nb_by_h * nb_by_w)),
 		margin		= 5;
 
-	var	height	= nb_by_h * (4 + image[0].offsetHeight + margin * 2),
-		width	= nb_by_w * (image[0].offsetWidth + margin * 2);
+	var	height	= nb_by_h * (150 + margin * 2),
+		width	= nb_by_w * (200 + margin * 2);
 
 	galerie.style.width = width + "px";
 	galerie.style.height = height + "px";

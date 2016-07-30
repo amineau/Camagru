@@ -13,8 +13,8 @@
 
 
 /************ Compte superadmin *************/
-    $login      = "admin";
-    $password   = hash("whirlpool", $login);
-    $mail       = "amineau@student.42.fr";
+    $super_login      = "admin";
+    $super_password   = hash("whirlpool", $super_login);
+    $super_mail       = "amineau@student.42.fr";
 /********************************************/
 ?>

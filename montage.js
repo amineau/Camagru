@@ -65,9 +65,6 @@
 				button.style.display = "none";
 			}
 		};
-		child.onload = function() {
-			this.style.opacity = "0.5";
-		};
 		child = child.nextElementSibling;
 	}
 
