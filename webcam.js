@@ -66,6 +66,12 @@
 	}
 
 	function readData(rData) {
+		if (rData == null) {
+			alert("heho");
+			document.getElementById("gif").style.display = "none";
+			return;
+		}
+		document.getElementById('hid_data').removeAttribute('value');
 		var photos	= document.getElementById("photos"),
 			newPic	= document.getElementById("gif"),
 			clone	= newPic.cloneNode(true),
@@ -88,8 +94,6 @@
 
 		clone.style.display = "none";
 		photos.insertBefore(clone, photos.firstChild);
-
-		document.getElementById('hid_data').removeAttribute('value');
 	}
 
 	function takepicture() {

@@ -2,7 +2,7 @@
 	session_start();
 	header("Content-Type: text/xml");
 	require_once('function.php');
-	if (!isset($_POST['data'], $_POST['calque'], $_SESSION['login'])) {
+	if (!isset($_POST['data'], $_POST['calque'], $_SESSION['login']) || empty($_POST['data']) || empty($_POST['calque'])) {
 		exit;
 	}
 
