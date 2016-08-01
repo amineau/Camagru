@@ -6,7 +6,12 @@
 		button	= document.getElementById('button'),
 		superpos = document.getElementById('superpos'),
 		child	= calque.firstElementChild,
-		cover	= document.createElement("IMG");
+		cover	= document.createElement("IMG"),
+		handler = function(ev){
+					takepicture();
+					savePicture();
+					ev.preventDefault();
+				};
 
 		cover.style.position = 'absolute';
 
@@ -55,14 +60,17 @@
 				cover.setAttribute('src', this.getAttribute('src'));
 				cover.style.left = pos_x(this.id) + "px";
 				cover.style.top = pos_y(this.id) + "px";
-				button.style.display = "block";
+				alert("coucou");
+				button.className = "input";
+				button.addEventListener('click', handler, false);
 
 			} else {
 				hidde.removeAttribute('value');
 				cover.removeAttribute('src');
 				superpos.removeChild(superpos.lastElementChild);
 				this.style.opacity = "0.5";
-				button.style.display = "none";
+				button.className = "fail";
+				button.removeEventListener('click', handler);
 			}
 		};
 		child = child.nextElementSibling;

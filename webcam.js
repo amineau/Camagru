@@ -5,8 +5,8 @@
 		cover   = document.querySelector('#cover'),
 		canvas  = document.querySelector('#canvas'),
 		photo   = document.querySelector('#photo'),
-		button  = document.querySelector('#button'),
 		superpo = document.querySelector('#superpos'),
+		fichier = superpos.firstChild,
 		width   = 480,
 		height  = 0;
 
@@ -42,9 +42,14 @@
 					video.setAttribute('height', height);
 					canvas.setAttribute('width', width);
 					canvas.setAttribute('height', height);
+					superpo.style.width = width + "px";
+					superpo.style.height = height + "px";
 					streaming = true;
 				}
 			}, false);
+	} else {
+		superpo.style.width = fichier.offsetWidth + "px";
+		superpo.style.height = fichier.offsetHeight + "px";
 	}
 
 	function savePicture() {
@@ -67,7 +72,6 @@
 
 	function readData(rData) {
 		if (rData == null) {
-			alert("heho");
 			document.getElementById("gif").style.display = "none";
 			return;
 		}
@@ -109,11 +113,5 @@
 		var ret = data.slice(data.indexOf(',') + 1);
 		document.getElementById('hid_data').setAttribute('value', ret);
 	}
-
-	button.addEventListener('click', function(ev){
-		takepicture();
-		savePicture();
-		ev.preventDefault();
-	}, false);
 
 })();

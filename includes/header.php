@@ -14,22 +14,38 @@
 	<body>
 		<header>
 			<?php 
-			echo '<div><a href="index.php"><img src="img/instagru.gif" alt="logo instagru"/></a></div>';
+			echo '<a href="index.php" class="logo"><img src="img/Instagru.png" id="ico" alt="logo instagru">';
+			echo '<h1>Intagru</h1></a>';
 			if (isset($_GET['ret_connect'])) {
-				echo '<div>'.$_GET['ret_connect'].'</div>';
+				echo '<div class="error">'.$_GET['ret_connect'].'</div>';
 			}
 			if (isset($_SESSION['login'])) { 
-				echo '<div>Bonjour '.$_SESSION['login'].'</div>';
-				echo '<div><a href="update_passwd.php">Changer de mot de passe</a></div>';
-				// echo '<div><a href="remove_account.php">Supprimer le compte</a></div>';
-				echo '<div><a href="disconnect.php">Deconnexion</a></div>';
-				echo '<nav><ul>';
-				echo '<li><a href="galerie.php">Galerie</a></li>';
-				echo '<li><a href="index.php">Montage</a></li>';
-				echo '</ul></nav>';
-			}
-			
 			?>
+				<nav class="fond">
+					<ul id="menu">
+						<li><a href="#" class="button">Mon compte</a>
+							<ul class ="fond">
+								<li><a href="update_passwd.php" class="button" >Changer de mot de passe</a></li>
+								<li><a href="disconnect.php" class="button" >Deconnexion</a></li>
+							</ul>
+						</li>
+						<li><a href="index.php" class="button">Montage</a></li>
+						<li><a href="galerie.php" class="button">Galerie</a></li>
+					</ul>
+				</nav>
+				<script type="text/javascript">
+					(function(){
+						var menu = document.getElementById("menu").firstChild;
+
+						menu.onmouseover = function(){
+							this.className += "agran";
+						}
+						menu.onmouseout = function(){
+							this.className = this.className.replace(new RegExp(" sfhover\b"), "");
+						}
+					})();
+				</script>
+		<?php	}	?>
 
 		</header>
 		

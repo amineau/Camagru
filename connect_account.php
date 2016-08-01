@@ -21,7 +21,6 @@
             if ($donnee['valid']) {
                 $_SESSION['login'] = $donnee['login'];
                 $_SESSION['id_user'] = $donnee['id'];
-                $ret_connect = "Connexion réussi";
             }
             else {
                 $ret_connect = "Vous n'avez pas validé votre compte";
