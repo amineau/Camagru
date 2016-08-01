@@ -1,7 +1,8 @@
 <?php
 	
+	
 	require_once('function.php');
-	if (!$_POST) {
+	if (!isset($_POST['login'], $_POST['passwd'], $_POST['email'])) {
 		header("Location: ".adresse('index.php'));
 		exit;
 	}
@@ -26,14 +27,17 @@
 			 		$doublon .= " est déjà utilisé.";
 			 		header("Location: ".adresse('create_account.php?doublon='.$doublon));
 			 		exit;
+			 	} elseif (strlen($_POST['login']) > 50) {
+			 		header("Location: ".adresse('create_account.php?doublon=Le login a une taille supérieur à 50 caractères.'));
+			 		exit;
 			 	}
+
 		 	} catch(PDOException $e) {;
 				echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
 		 	}
 		}
 	/*********************************************/
-
-	include ('includes/header.php');
+include ('includes/header.php');
 	
 	$code = md5(rand().'login');
 	try {	
@@ -46,20 +50,14 @@
 	 			$_POST['email'],
 	 			hash("whirlpool", $_POST['passwd']),
 	 			$code));
-	 	$db->commit();
- 	} catch(PDOException $e) {
-		$db->rollBack();
-		echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
-	}
- 	    
  	    /******** Envoi du mail ********/
 
  	    $subject = $website_name." : Veuillez confirmer votre adresse électronique";
 
  	    $message = "<html><body><p><strong>Vous y êtes presque</strong></p>";
- 	    $message .= "<p>Bienvenue dans ".$website_name.", ".$_POST['login'];
+ 	    $message .= "<p>Bienvenue dans ".$website_name.", ".htmlentities($_POST['login']);
  	    $message .= ".<br />Cliquez sur le lien ci-dessous puis connectez vous avec votre login : ";
- 	    $message .= $_POST['login'].".<br />";
+ 	    $message .= htmlentities($_POST['login']).".<br />";
  	    $message .= "<a href=\"".adresse("validation.php?code=".$code)."\" style=\"font-style: bold; text-decoration: none\">Confirmez votre adresse électronique</a></p>";
  	    $message .= "<p>Nous sommes heureux de vous compter parmis nous,<br />L'équipe ".$website_name;
  	    $message .= "</p></body></html>";
@@ -67,6 +65,11 @@
     	send_mail($_POST['email'], $subject, $message, $website_name);
  	    /******************************/
  	    
- 	    echo "<p>Un email de confirmation vient de vous être envoyé sur votre boite mail " .$_POST['email']. ".</br>Veuillez cliquer sur le lien de confirmation présent dans le mail pour valider votre inscription.</p>";
+ 	    echo "<section class='fond sect'><p>Un email de confirmation vient de vous être envoyé sur votre boite mail " .$_POST['email']. ".</br>Veuillez cliquer sur le lien de confirmation présent dans le mail pour valider votre inscription.</p></section>";
+ 	    $db->commit();
+ 	} catch(PDOException $e) {
+		$db->rollBack();
+		echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
+	}
 		
 		include ('includes/footer.php'); ?>

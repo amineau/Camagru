@@ -3,6 +3,8 @@
 	header("Content-Type: text/xml");
 	require_once('function.php');
 	if (!isset($_POST['data'], $_POST['calque'], $_SESSION['login']) || empty($_POST['data']) || empty($_POST['calque'])) {
+		require_once('function.php');
+		header("Location: ".adresse('index.php'));
 		exit;
 	}
 

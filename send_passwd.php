@@ -31,7 +31,7 @@
 	 	    $website = "Instagru";
 	 	    $subject = $website." : Nouveau mot de passe";
 
-	 	    $message = "<html><body><p><strong>Bonjour ".$donnee['login'].",</strong></p>";
+	 	    $message = "<html><body><p><strong>Bonjour ".htmlentities($donnee['login']).",</strong></p>";
 	 	    $message .= "<p>Suite à votre demande, un nouveau mot de passe vous a été attribué.<br />";
 	 	    $message .= "Nouveau mot de passe : ".$new_passwd."</p>";
 	 	    $message .= "<p>Nous sommes heureux de vous compter parmis nous,<br />L'équipe ".$website;

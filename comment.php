@@ -8,6 +8,8 @@
 	$date 		= date("Y-m-d H:i:s", time());
 	$id_pic		= $_POST['id_pic'];
 	if (!isset($comment, $id_pic, $name)) {
+		require_once('function.php');
+		header("Location: ".adresse('index.php'));
 		exit;
 	}
 	echo '<?xml version = "1.0" encoding="UTF-8"?>';

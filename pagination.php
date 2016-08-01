@@ -1,11 +1,12 @@
 <?php
-	
 	header("Content-Type: text/xml");
 
 	$nb_img = $_POST['nb_img'];
 	$page 	= $_POST['page'];
 	$i 		= 0;
 	if (!isset($nb_img, $page) || empty($nb_img) || empty($page)) {
+	    require_once('function.php');
+		header('Location: '.adresse('index.php'));
 		exit;
 	}
 

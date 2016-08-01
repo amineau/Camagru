@@ -1,5 +1,4 @@
 <?php 
-
 	include ('includes/header.php'); 			
 		
 	if (!isset($_POST['delete'], $_POST['id_pic'])) {

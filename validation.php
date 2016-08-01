@@ -1,7 +1,7 @@
-		<?php
-			include ('includes/header.php');
-		?>
-		
+<?php 
+	include ('includes/header.php');
+	session_destroy()
+?>
 		<section>
 		    
 		    <?php

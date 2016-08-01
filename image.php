@@ -1,5 +1,4 @@
 <?php 
-
 	include ('includes/header.php'); 			
 		
 	if (!isset($_SESSION['login']) || !isset($_GET['id_pic'])) {
@@ -45,7 +44,7 @@
 							echo '<div class="corazon"><a href="javascript:void(0)" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
 							echo '<a href="javascript:void(0)" onclick="ft_like(this);" id="dislike" style="visibility: '.$visibility.';" ><img src="img/coeur-rouge.png"></a></div>';
 							echo '<form id="delete_pic" action="remove_pic.php" method="post">';
-							echo '<input type="hidden" id="id_pic" name="id_pic" value="'.$_GET['id_pic'].'">';
+							echo '<input type="hidden" id="id_pic" name="id_pic" value="'.htmlentities($_GET['id_pic']).'">';
 							if ($donnees_pic['id_user'] == $_SESSION['id_user']) {
 								echo '<input class="fail" type="submit" name="delete" value="Supprimer">';
 							}
@@ -63,7 +62,7 @@
 										$name		= $recup['login'];
 										$date 		= $donnees['date_comment'];
 										$comment 	= $donnees['commentaire'];
-										echo '<script type="text/javascript">createComment("'.$name.'","'.$date.'","'.$comment.'");</script>';
+										echo '<script type="text/javascript">createComment("'.htmlentities($name).'","'.$date.'","'.htmlentities($comment).'");</script>';
 									} catch(PDOException $e) {
 										echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
 									}

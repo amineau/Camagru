@@ -6,6 +6,8 @@
 	$date		= $_POST['date'];
 	$id_pic		= $_POST['id_pic'];
 	if (!isset($comment, $name, $date, $id_pic)) {
+		require_once('function.php');
+		header("Location: ".adresse('index.php'));
 		exit;
 	}
 
@@ -25,9 +27,9 @@
 
  	    $subject = $website." : Vous avez un nouveau commentaire";
 
- 	    $message = "<html><body><p><strong>Bonjour ".$donnees['login'].", vous avez reçu un nouveau commentaire sur l'une de vos photos</strong></p>";
- 	    $message .= "<p>".$name." a écrit :";
- 	    $message .= "<br />".$comment."</p>";
+ 	    $message = "<html><body><p><strong>Bonjour ".htmlentities($donnees['login']).", vous avez reçu un nouveau commentaire sur l'une de vos photos</strong></p>";
+ 	    $message .= "<p>".htmlentities($name)." a écrit :";
+ 	    $message .= "<br />".htmlentities($comment)."</p>";
  	    $message .= "<br />Vous pouvez retouver ce commentaire sur ce ";
  	    $message .= "<a href=\"".adresse("image.php?id_pic=".$id_pic)."\" style=\"font-style: bold; text-decoration: none\">lien</a>.</p>";
  	    $message .= "<p>Nous sommes heureux de vous compter parmis nous,<br />L'équipe ".$website;

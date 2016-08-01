@@ -1,6 +1,7 @@
 <?php include ('includes/header.php'); 
 			if (isset($_SESSION['login']))
 			{
+				
 				require_once('function.php');
 				header("Location: ".adresse('index.php'));
 				exit;
@@ -26,7 +27,7 @@
 			</form>
 			<?php 
 						if (isset($_GET['doublon'])) {
-							echo "<div class='error'>".$_GET['doublon']."</div>";
+							echo "<div class='error'>".htmlentities($_GET['doublon'])."</div>";
 						}
 			?>
 		</section>
