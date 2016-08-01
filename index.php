@@ -6,12 +6,12 @@
 				if (!isset($_SESSION['login'])){
 			?>
 				<article>
-					<form method="post" action="connect_account.php">
-						<a href="create_account.php">Création de compte</a>
-						<div>
-							<label for="login">Login : </label><input name="login" type="text" id="connectLogin" />
-							<label for="passwd">Mot de passe : </label><input name="passwd" type="password" id="connectPasswd" />
-							<a href="forgot_passwd.php">Mot de passe oublié</a>
+				<div id="create"><a href="create_account.php" >Création de compte</a></div>
+					<form class="form_account" method="post" action="connect_account.php">
+						
+							<div><label for="login">Login : </label><input name="login" type="text" id="connectLogin" /></div>
+							<div><label for="passwd">Mot de passe : </label><input name="passwd" type="password" id="connectPasswd" /></div>
+							<a href="forgot_passwd.php">Mot de passe oublié ?</a>
 							<input type="submit" class="input" name="OK" value="OK" />
 						</div>
 					</form>
@@ -44,18 +44,19 @@
 						</div>
 					</div>
 					<input type="button" id="button" class="fail" value="Prendre une photo">	
-					<script type="text/javascript" src="montage.js"></script>
+					
 					<canvas id="canvas"></canvas>
 				</form>
 					<form id="file" action="upload.php" method="post" enctype="multipart/form-data">
-						<input type="file" name="file">
-						<input type="submit" class="input" name="upload" value="Valider">
+						<p>Pas de webcam ?<br />Vous pouvez faire un montage avec la photo de votre choix :</p>
 					<?php
 						if (isset($_SESSION['file_error']) && !empty($_SESSION['file_error'])) {
-							echo "<div class='error'>".$_SESSION['file_error']."</div>";
+							echo "<p class='error'>".$_SESSION['file_error']."</p>";
 							$_SESSION['file_error'] = "";
 						}
 					?>
+						<input type="file" name="file">
+						<input type="submit" class="input" name="upload" value="Valider">
 					</form>
 			</article>
 			<script type="text/javascript" src="webcam.js"></script>

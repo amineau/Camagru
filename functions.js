@@ -49,7 +49,7 @@ function checkAccount()
         bool = 0;
     if (!bool || !isSame(document.getElementById("createPasswd"), document.getElementById("createConfPasswd")))
         return 0;
-    document.getElementById("createAccount").submit();
+    document.getElementById('createAccount').submit();
 }
 
 function checkUpdate()

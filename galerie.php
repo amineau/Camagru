@@ -9,18 +9,20 @@
 	}
 ?>
 
-		<section>
+		<section class="fond sect">
 		<article>
+			<h2>Galerie</h2>
 			<div id="galerie">
 				<div>
 				<?php
 					require('connec_db.php');
 				    
 						try {
-						    $rep = $db->prepare('SELECT id, image FROM picture ORDER BY date_de_creation DESC;');
+						    $rep = $db->prepare('SELECT COUNT(*) FROM picture;');
 						    $rep->execute();
-						    while ($donnees = $rep->fetch()) {
-						    	echo "<div class='pic_nav'><a href='image.php?id_pic=".$donnees['id']."'><img src='data:image/png;base64,".$donnees['image']."' class='pic_galerie' alt='Photo de galerie' style='display: none;'></a></div>";
+						    $nb = $rep->fetchColumn();
+						    while ($nb--){
+						    	echo "<div class='zoom'><a><img class='pic_galerie' alt='Photo de galerie' style='display: none;'></a></div>";
 						    }
 						}
 						catch(PDOException $e) {
@@ -30,9 +32,9 @@
 				</div>
 			</div>
 			<form id="arrow">
-				<img src="img/arrow.png" class="arrow" id="left">
+				<span class="arrow" id="left"><</span>
 				<span id="page">1</span>
-				<img src="img/arrow.png" class="arrow" id="right">
+				<span class="arrow" id="right">></span>
 				<input type="hidden" name="sheet_arrow">
 			</form>
 			<script type="text/javascript" src="galerie.js"></script>

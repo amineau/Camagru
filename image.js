@@ -43,12 +43,6 @@
 			
 		document.getElementById('comment').value = "";
 
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				returnMail(xhr.responseText);
-			}
-		};
-
 		xhr.open("POST", "comment_send_mail.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.send("text="+comment+"&name="+name+"&date="+date+"&id_pic="+idPic);
@@ -64,8 +58,11 @@
 			}
 
 			p[0].appendChild(document.createTextNode(name));
+			p[0].className = "login";
 			p[1].appendChild(document.createTextNode(comment));
+			p[1].className = "comment";
 			p[2].appendChild(document.createTextNode('Il y a '+diffTime(date)));
+			p[2].className = "time";
 			
 			for(i=0; i<3;i++){
 				div.appendChild(p[i]);

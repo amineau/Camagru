@@ -12,8 +12,8 @@
 }
 
 .box {
-    border: 1px #C1C1C1;
-    border-radius: 2px;
+    border: 1px solid #C1C1C1;
+    border-radius: 3px;
 }
 
 .mesbox {
@@ -21,7 +21,7 @@
 }
 
 html {
-	font-family: "Comic Sans MS";
+	font-family:Comic Sans MS;
 	font-size: 100%;
 	color: #C8C8C8;
 }
@@ -49,6 +49,7 @@ header nav {
 	display: flex;
 	justify-content: flex-end;
 	width: auto;
+	z-index: 1;
 }
 
 section {
@@ -68,6 +69,10 @@ h1 {
 
 h2 {
 	text-align: center;
+	font-size: 300%;
+	letter-spacing: 3px;
+	-webkit-margin-before: 0px;
+	font-family: 'amaticbold'
 }
 
 canvas {
@@ -82,19 +87,21 @@ a {
 
 #file {
 	border-top: 1px solid #706545;
-	margin-top: 50px;
-	padding-top: 50px;
+	margin-top: 30px;
+	padding-top: 30px;
+	margin-bottom: 60px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
 .error {
-	color: #7C1816
+	color: #C40100
 }
 
 .sect {
 	padding: 60px;
+	flex-wrap: wrap;
 }
 
 .input {
@@ -156,6 +163,7 @@ a {
 .fond {
 	background-color: rgba(28,28,28,0.8);
 	border-radius: 10px;
+	max-width: 80%;
 }
 
 #ico {
@@ -173,7 +181,6 @@ a {
 .logo {
 	display: flex;
 	align-items: center;
-	margin-left: 50px;
 }
 
 .ajout {
@@ -207,7 +214,7 @@ a {
 }
 
 #nav {
-	margin-left: 50px;
+	padding-left: 50px;
 }
 
 .pic_nav {
@@ -217,20 +224,21 @@ a {
 	overflow-x: hidden;
 }
 
+.zoom {
+	overflow: hidden;
+	/*padding: 2px*/;
+}
+
+
+
 .pic_galerie {
-	--margin: 5;
-	--border: 4;
-	margin: calc(var(--margin) * 1px);
 	max-width: 200px;
 	max-height: 150px;
+	transition: all 1s;
 }
 
 .pic_galerie:hover {
-	margin: calc((var(--margin) - var(--border)) * 1px);
-	border-width: calc(var(--border) * 1px);
-	border-style: solid;
-	border-color: black;
-	border-radius: calc(var(--border) * 1px);
+	transform: scale(1.1);
 }
 
 #photos {
@@ -246,6 +254,28 @@ a {
 	align-items: center;
 }
 
+#galerie div div {
+	width: 220px;
+	height: 170px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#arrow {
+	display: flex;
+	justify-content: center;
+}
+
+#arrow span {
+	font-size: 2em;
+	margin: 10px;
+}
+
+.arrow {
+	cursor: pointer;
+	font-weight: bold;
+}
 .arrow:hover {
 	transform: scale(1.25);
 }
@@ -256,8 +286,8 @@ a {
 
 .corazon a {
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 20px;
+	right: 20px;
 }
 
 #dislike {
@@ -266,6 +296,74 @@ a {
 
 #like {
 	z-index: 10;
+}
+
+#comments {
+	padding-top: 100px;
+}
+
+#comments div{
+	background-color: rgba(56,56,56,0.8); 
+	margin: 1px;
+	width: 480px; 
+	border-radius: 10px;
+}
+
+#comments div p {
+	margin: 5px;
+	margin-left: 10px;
+}
+
+.login {
+	padding-top: 5px;
+	color: #27AC13;
+	font-weight: bold;
+}
+
+#comment {
+	width: 300px;
+}
+
+.comment {
+	padding-left: 50px;
+}
+
+.time {
+	color: black;
+	font-size: 0.8em;
+}
+
+.img_uni {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#delete_pic {
+	position: absolute;
+}
+
+.form_account {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-around;
+	height: 250px;
+}
+
+#create {
+	margin-bottom: 50px;
+}
+
+#create a {
+	color: #24B1FE;
+	font-weight: bold;
+}
+
+.compte {
+	display: flex;
+	flex-direction: column;
+
 }
 
 

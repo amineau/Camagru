@@ -10,7 +10,7 @@
 ?>
 
 <script type="text/javascript" src="image.js"></script>
-		<section>
+		<section class="fond sect">
 			<article>
 
 				<?php
@@ -34,19 +34,20 @@
 
 
 						    if (isset($donnees_pic['image'])) {
-						    	echo '<img src="data:image/png;base64,'.$donnees_pic['image'].'" id="picture">';
+						    	echo '<div class="img_uni"><img src="data:image/png;base64,'.$donnees_pic['image'].'" id="picture"></div>';
 						    } else {
 								echo "<p>Cette image n'existe pas !</p>";
+								include ('includes/footer.php');
 								exit;
 							}
 						
 						    echo '<input type="hidden" name="coeur">';
 							echo '<div class="corazon"><a href="javascript:void(0)" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
 							echo '<a href="javascript:void(0)" onclick="ft_like(this);" id="dislike" style="visibility: '.$visibility.';" ><img src="img/coeur-rouge.png"></a></div>';
-							echo '<form action="remove_pic.php" method="post">';
+							echo '<form id="delete_pic" action="remove_pic.php" method="post">';
 							echo '<input type="hidden" id="id_pic" name="id_pic" value="'.$_GET['id_pic'].'">';
 							if ($donnees_pic['id_user'] == $_SESSION['id_user']) {
-								echo '<input type="submit" name="delete" value="Supprimer">';
+								echo '<input class="fail" type="submit" name="delete" value="Supprimer">';
 							}
 							echo '</form>';
 							echo "<div id='comments'>";
@@ -74,8 +75,10 @@
 							}
 							echo "</div>";
 							?>
+							
 								<input type="text" id="comment">
-								<input type="button" onclick="ft_comment()" id="valider" value="Valider">
+								<input type="button" onclick="ft_comment()" id="valider" class="input" value="Commenter">
+							
 							<?php	
 								
 
