@@ -7,10 +7,13 @@
 			exit;
 		}
 ?>
-		<form method="post" action="send_passwd.php">
-		   <div><label for="email">Adresse email : </label><br /><input name="email" type="mail" /></div>
-		    <input type="submit" value="Renvoyer un mot de passe"/>
+	<section class="fond sect">
+		<form method="post" class="form_account" action="send_passwd.php">
+		   <div><label for="email">Adresse email : </label><input name="email" type="mail" /></div>
+		    <input type="submit" class="input" value="Renvoyer un mot de passe" style="
+    width: 220px;"/>
 		</form>
+	</section>
 	    	
 		
 	<?php include ('includes/footer.php'); ?>

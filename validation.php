@@ -19,7 +19,7 @@
 				        } elseif ($donnee['valid']) {
 				        	$aff = "Votre compte a déjà été validé.";
 				        } else {
-				        	$aff = "Nous avons bien enregistrer votre validation, vous pouvez dès à présent vous connecter.";
+				        	$aff = "Nous avons bien enregistré votre validation, vous pouvez dès à présent vous connecter.";
 				        	try {
 				        		$db->beginTransaction();
 					        	$rep = $db->prepare('UPDATE user SET valid = 1 WHERE code = ?;');

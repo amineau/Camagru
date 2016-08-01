@@ -4,19 +4,16 @@
     
     $login  = $_POST['login'];
     $passwd = $_POST['passwd'];
-
+    $ret_connect = "";
     if (!isset($login, $passwd)) {	
 			header("Location: ".adresse('index.php'));
 			exit;
 	}
-	print_r($_POST);
-    echo "<br />".$login."<br />";
 	require('connec_db.php');
     try {
         $rep = $db->prepare('SELECT id, login, password, valid FROM user WHERE login = ? AND password = ?;');
         $rep->execute(array($login, hash("whirlpool", $passwd)));
         $donnee = $rep->fetch();
-        print_r($donnee);
         if ($donnee['login']) {
             if ($donnee['valid']) {
                 $_SESSION['login'] = $donnee['login'];
@@ -31,7 +28,10 @@
     } catch(PDOException $e) {
             echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
     }
-    header("Location: ".adresse('index.php?ret_connect='.$ret_connect));
+    if ($ret_connect != "") {
+        $ret_connect = "?ret_connect=".$ret_connect;
+    } 
+    header("Location: ".adresse('index.php'.$ret_connect));
     exit;
     
 ?>

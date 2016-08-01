@@ -8,7 +8,6 @@
          url('font/amatic-bold-Amatic.svg#amaticbold') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 .box {
@@ -142,7 +141,6 @@ a {
 .input:hover{
 	border-color: #99C04B;
 	color: #99C04B;
-	
 }
 
 #montage {
@@ -226,7 +224,6 @@ a {
 
 .zoom {
 	overflow: hidden;
-	/*padding: 2px*/;
 }
 
 

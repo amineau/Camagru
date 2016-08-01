@@ -1,5 +1,4 @@
-
-		<?php include ('includes/header.php'); ?>
+<?php include ('includes/header.php'); ?>
 		
 		<section class="fond sect">
 			<?php
@@ -8,7 +7,10 @@
 				<article>
 				<div id="create"><a href="create_account.php" >Création de compte</a></div>
 					<form class="form_account" method="post" action="connect_account.php">
-						
+						<?php
+						if (isset($_GET['ret_connect'])) {
+							echo '<div class="error">'.$_GET['ret_connect'].'</div>';
+						} ?>
 							<div><label for="login">Login : </label><input name="login" type="text" id="connectLogin" /></div>
 							<div><label for="passwd">Mot de passe : </label><input name="passwd" type="password" id="connectPasswd" /></div>
 							<a href="forgot_passwd.php">Mot de passe oublié ?</a>

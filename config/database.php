@@ -11,7 +11,7 @@
     $DB_PASSWORD    = "root";
 /********************************************/
 
-
+	
 /************ Compte superadmin *************/
     $super_login      = "admin";
     $super_password   = hash("whirlpool", $super_login);

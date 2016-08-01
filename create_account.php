@@ -1,5 +1,4 @@
-
-		<?php include ('includes/header.php'); 
+<?php include ('includes/header.php'); 
 			if (isset($_SESSION['login']))
 			{
 				require_once('function.php');

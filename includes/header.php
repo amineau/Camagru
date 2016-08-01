@@ -16,9 +16,6 @@
 			<?php 
 			echo '<a href="index.php" class="logo"><img src="img/Instagru.png" id="ico" alt="logo instagru">';
 			echo '<h1>Intagru</h1></a>';
-			if (isset($_GET['ret_connect'])) {
-				echo '<div class="error">'.$_GET['ret_connect'].'</div>';
-			}
 			if (isset($_SESSION['login'])) { 
 			?>
 				<nav class="fond">
