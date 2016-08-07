@@ -1,12 +1,15 @@
 	function ft_like(oARef) {
 		var xhr 	= getXMLHttpRequest();
 		var liOrDis	= oARef.id;
+		var nbLike 	= document.getElementById('nb_like');
 		var idPic	= document.getElementById('id_pic').value;
 
 		if (liOrDis == 'like') {
 			document.getElementById('dislike').style.visibility = "visible";
+			nbLike.textContent = Number(nbLike.textContent) + 1;
 		} else {
 			oARef.style.visibility = "hidden";
+			nbLike.textContent = Number(nbLike.textContent) - 1;
 		}
 		xhr.open("POST", "like.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -53,7 +56,7 @@
 			div		= document.createElement("div"),
 			p		= {};
 
-			for(i=0; i<3;i++){
+			for(i=0; i<3; i++){
 				p[i] = document.createElement("p");
 			}
 
@@ -74,7 +77,7 @@
 	function diffTime(oldDate) {
 		var now = new Date();
 		var old = new Date(oldDate);
-		var tmp = now - old;
+		var tmp = now.getTime()/1000 + now.getTimezoneOffset() * 60 - old.getTime()/1000;
 		var dif = {
 			'an': '',
 			'mois': '',
@@ -83,8 +86,7 @@
 			'minute': '',
 			'sec': ''
 		};
-
-		tmp = mp = Math.floor(tmp/1000);            
+           
 		dif.sec = tmp % 60;					
 		tmp = Math.floor((tmp-dif.sec)/60);	
 		dif.minute = tmp % 60;				

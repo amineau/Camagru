@@ -1,12 +1,13 @@
-<?php include ('includes/header.php'); 
-			if (isset($_SESSION['login']))
-			{
-				
-				require_once('function.php');
-				header("Location: ".adresse('index.php'));
-				exit;
-			}
-		?>
+<?php 
+	session_start();
+	include ('includes/header.php'); 
+	if (isset($_SESSION['login']))
+	{		
+		require_once('function.php');
+		header("Location: ".adresse('index.php'));
+		exit;
+	}
+?>
 		
 		<section class="fond sect compte">
 			<h2>Création de compte</h2>

@@ -1,12 +1,12 @@
 <?php
 
-    
-    ini_set('date.timezone', 'Europe/Paris');
+ 	date_default_timezone_set('Europe/Paris');
  
- 
+ 	$db_host = "localhost";
+ 	$db_name = "camagru";
+
 /************** Connexion bdd ***************/  
-    $IP             = getenv('IP');
-    $DB_DSN         = "mysql:localhost;host=" . $IP;
+    $DB_DSN         = "mysql:host=".$db_host.";dbname=".$db_name;
     $DB_USER        = "root";
     $DB_PASSWORD    = "root";
 /********************************************/

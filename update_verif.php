@@ -1,7 +1,7 @@
 <?php 
-	
-	require_once('function.php');
+	session_start();
 	if (!isset($_POST['old_passwd'], $_POST['new_passwd'])) {
+		require_once('function.php');
 		header("Location: ".adresse('index.php'));
 		exit;
 	}

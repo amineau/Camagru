@@ -1,11 +1,12 @@
 <?php 
-        include ('includes/header.php'); 
+        session_start();
     	if (!isset($_SESSION['login']))
 		{
 			require_once('function.php');
 			header("Location: ".adresse('index.php'));
 			exit;
 		}
+		include ('includes/header.php'); 
 ?>
 	<section class="fond sect">
 		<form class="form_account" id="updateAccount" method="post" action="update_verif.php">

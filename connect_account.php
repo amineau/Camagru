@@ -1,12 +1,10 @@
 <?php
     session_start();
     require_once('function.php');
-    
+    header("Location: ".adresse('index.php'));
     $login  = $_POST['login'];
     $passwd = $_POST['passwd'];
-    $ret_connect = "";
-    if (!isset($login, $passwd)) {	
-			header("Location: ".adresse('index.php'));
+    if (!isset($login, $passwd)) {
 			exit;
 	}
 	require('connec_db.php');
@@ -20,18 +18,13 @@
                 $_SESSION['id_user'] = $donnee['id'];
             }
             else {
-                $ret_connect = "Vous n'avez pas validé votre compte";
+                $_SESSION['ret_connect'] = "Vous n'avez pas validé votre compte";
             }
         } else {
-            $ret_connect = "login ou mot de passe incorect";
+            $_SESSION['ret_connect'] = "login ou mot de passe incorect";
         }
     } catch(PDOException $e) {
             echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
     }
-    if ($ret_connect != "") {
-        $ret_connect = "?ret_connect=".$ret_connect;
-    } 
-    header("Location: ".adresse('index.php'.$ret_connect));
-    exit;
     
 ?>

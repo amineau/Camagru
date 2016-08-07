@@ -1,11 +1,11 @@
 <?php 
-	include ('includes/header.php'); 			
-		
+	session_start();
 	if (!isset($_SESSION['login']) || !isset($_GET['id_pic'])) {
 		require_once('function.php');
 		header("Location: ".adresse('index.php'));
 		exit;
 	}
+	include ('includes/header.php');
 ?>
 
 <script type="text/javascript" src="image.js"></script>
@@ -21,15 +21,19 @@
 							$donnees_pic = $rep->fetch();
 						    
 
-						    $rep2 = $db->prepare('SELECT COUNT(*) FROM likes WHERE id_user = ? AND id_pic = ?;');
-							$rep2->execute(array($_SESSION['id_user'], $_GET['id_pic']));
+						    $rep = $db->prepare('SELECT COUNT(*) FROM likes WHERE id_user = ? AND id_pic = ?;');
+							$rep->execute(array($_SESSION['id_user'], $_GET['id_pic']));
 							
-							if ($rep2->fetchColumn() != 0) {
+							if ($rep->fetchColumn() != 0) {
 								$visibility = "visible";
 							} else {
 						    	$visibility = "hidden";
 						    };
 
+						    $rep = $db->prepare('SELECT COUNT(*) FROM likes WHERE id_pic = ?;');
+							$rep->execute(array($_GET['id_pic']));;
+
+						    $nb_like = $rep->fetchColumn();
 
 
 						    if (isset($donnees_pic['image'])) {
@@ -41,7 +45,9 @@
 							}
 						
 						    echo '<input type="hidden" name="coeur">';
-							echo '<div class="corazon"><a href="javascript:void(0)" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
+							echo '<div class="corazon">';
+							echo '<div id="nb_like">'.$nb_like.'</div>';
+							echo '<a href="javascript:void(0)" onclick="ft_like(this);" id="like"><img src="img/coeur-noir.png"></a>';
 							echo '<a href="javascript:void(0)" onclick="ft_like(this);" id="dislike" style="visibility: '.$visibility.';" ><img src="img/coeur-rouge.png"></a></div>';
 							echo '<form id="delete_pic" action="remove_pic.php" method="post">';
 							echo '<input type="hidden" id="id_pic" name="id_pic" value="'.htmlentities($_GET['id_pic']).'">';

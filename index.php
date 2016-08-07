@@ -1,4 +1,7 @@
-<?php include ('includes/header.php'); ?>
+<?php 
+	session_start();
+	include ('includes/header.php');
+?>
 		
 		<section class="fond sect">
 			<?php
@@ -12,8 +15,9 @@
 							<a href="forgot_passwd.php">Mot de passe oublié ?</a>
 							<input type="submit" class="input" name="OK" value="OK" />
 							<?php
-							if (isset($_GET['ret_connect'])) {
-								echo '<div class="error">'.htmlentities($_GET['ret_connect']).'</div>';
+							if (isset($_SESSION['ret_connect'])) {
+								echo '<div class="error">'.$_SESSION['ret_connect'].'</div>';
+								$_SESSION['ret_connect'] = "";
 							} ?>
 						</div>
 					</form>

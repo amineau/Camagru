@@ -1,11 +1,11 @@
-<?php 
-	include ('includes/header.php'); 			
-		
+<?php 		
+	session_start();	
 	if (!isset($_POST['delete'], $_POST['id_pic'])) {
 		require_once('function.php');
 		header("Location: ".adresse('index.php'));
 		exit;
 	}
+	include ('includes/header.php'); 
 ?>
 		<section>
 

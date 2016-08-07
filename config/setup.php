@@ -1,20 +1,22 @@
+<?php
+    session_start();
+    session_destroy();
+?>
+
 <html>
     <head>
         <title>Configuration bdd</title>
         <meta charset="utf-8" />
     </head>
 </html>
-<?php
 
+<?php
     require('database.php');
-    
 
     try {
         $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $db->exec("DROP DATABASE IF EXISTS camagru;
-                    CREATE DATABASE camagru;
-                    USE camagru;
+        $db->exec("DROP TABLES IF EXISTS user, picture, likes, comments;
                     CREATE TABLE user 
                         (id INT PRIMARY KEY AUTO_INCREMENT,
                         login VARCHAR(50) NOT NULL,

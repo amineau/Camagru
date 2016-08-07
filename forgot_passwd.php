@@ -1,11 +1,12 @@
 <?php 
-        include ('includes/header.php'); 
+        session_start();
     	if (isset($_SESSION['login']))
 		{
 			require_once('function.php');
 			header("Location: ".adresse('index.php'));
 			exit;
 		}
+		include ('includes/header.php'); 
 ?>
 	<section class="fond sect">
 		<form method="post" class="form_account" action="send_passwd.php">

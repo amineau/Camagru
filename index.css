@@ -23,12 +23,14 @@ html {
 	font-family:Comic Sans MS;
 	font-size: 100%;
 	color: #C8C8C8;
+	height: 100%;
 }
 
 body {
 	background-image: url("img/back.jpg");
 	background-size: cover;
 	width: 100%;
+	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -38,10 +40,18 @@ body {
 header, footer {
 	width: 60%;
 	display: flex;
-	justify-content: space-around;
 	align-items: baseline;
 	flex-wrap: wrap;
+}
+
+header {
+	justify-content: space-around;
 	margin: 50px;
+}
+footer {
+	justify-content: space-between;
+	font-weight: 0.4em;
+	margin: 20px;
 }
 
 header nav {
@@ -217,7 +227,7 @@ a {
 
 .pic_nav {
 	width: 250px;
-	height: 800px;
+	height: 700px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -225,8 +235,6 @@ a {
 .zoom {
 	overflow: hidden;
 }
-
-
 
 .pic_galerie {
 	max-width: 200px;
@@ -279,6 +287,12 @@ a {
 
 .corazon {
 	position: relative;
+}
+
+#nb_like {
+	position: absolute;
+	top: 30px;
+	right: 90px;
 }
 
 .corazon a {
@@ -360,7 +374,6 @@ a {
 .compte {
 	display: flex;
 	flex-direction: column;
-
 }
 
 
