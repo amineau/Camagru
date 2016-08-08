@@ -23,7 +23,7 @@
 		
 					<div><label for="confpasswd">Confirmation mot de passe : </label><input class="box" type="password" id="createConfPasswd"></div>
 
-					<div><input onclick="checkAccount();" id="conf_create" type="button" class="input" name="OK" value="OK">
+					<div><input onclick="checkAccount();" id="conf_create" type="button" class="input" name="OK" value="OK"></div>
 				
 			</form>
 			<?php 

@@ -48,9 +48,10 @@ function checkAccount()
     if (!minimumPassword(document.getElementById("createPasswd")))
         bool = 0;
     if (!bool || !isSame(document.getElementById("createPasswd"), document.getElementById("createConfPasswd")))
-        return 0;
+        return;
     document.getElementById('createAccount').submit();
 }
+
 
 function checkUpdate()
 {
@@ -58,8 +59,19 @@ function checkUpdate()
      if (!minimumPassword(document.getElementById("new_passwd")))
         bool = 0;
     if (!bool || !isSame(document.getElementById("new_passwd"), document.getElementById("conf_passwd")))
-        return 0;
+        return;
     document.getElementById("updateAccount").submit();
+}
+
+function checkDb()
+{
+    var host = document.getElementById("hostName");
+    var db = document.getElementById("dbName");
+    var user = document.getElementById("user");
+    
+    if (!checkNull(host) || !checkNull(db) || !checkNull(user))
+        return;
+    document.getElementById('createDb').submit();
 }
 
 function fsubmit() {

@@ -7,8 +7,9 @@
     if (!isset($login, $passwd)) {
 			exit;
 	}
-	require('connec_db.php');
+    require ('config/database.php');
     try {
+        $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         $rep = $db->prepare('SELECT id, login, password, valid FROM user WHERE login = ? AND password = ?;');
         $rep->execute(array($login, hash("whirlpool", $passwd)));
         $donnee = $rep->fetch();
@@ -24,7 +25,11 @@
             $_SESSION['ret_connect'] = "login ou mot de passe incorect";
         }
     } catch(PDOException $e) {
-            echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
+        echo 'Connexion échouée : ' . $e->getMessage() . '<br/>';
+        $_SESSION['ret_connect'] = "Base de données inexistante<br/>";
+        $_SESSION['$DB_DSN'] = $DB_DSN;
+        $_SESSION['$DB_USER'] = $DB_USER;
+        $_SESSION['$DB_PASSWORD'] = $DB_PASSWORD;
     }
     
 ?>

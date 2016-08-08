@@ -1,5 +1,10 @@
 <?php 
 	session_start();
+	if (!file_exists("config/db_info")) {
+		require_once('function.php');
+		header("Location: ".adresse("create_db.php"));
+		exit;
+	}
 	include ('includes/header.php');
 ?>
 		

@@ -12,10 +12,20 @@
 
 <?php
     require('database.php');
-
     try {
         $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch (PDOException $e) {
+        if (strstr($e->getMessage(), "SQLSTATE[HY000] [1049] Unknown database")) {
+            $db = new PDO("mysql:host=".$db_host, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $db->exec("CREATE DATABASE `$db_name`;
+                        USE `$db_name`;");
+        } else {
+            echo 'Connexion échouée : ' . $e->getMessage();
+        }
+    }
+    try {
         $db->exec("DROP TABLES IF EXISTS user, picture, likes, comments;
                     CREATE TABLE user 
                         (id INT PRIMARY KEY AUTO_INCREMENT,
