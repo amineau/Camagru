@@ -23,6 +23,7 @@
                         USE `$db_name`;");
         } else {
             echo 'Connexion échouée : ' . $e->getMessage();
+            exit;
         }
     }
     try {
